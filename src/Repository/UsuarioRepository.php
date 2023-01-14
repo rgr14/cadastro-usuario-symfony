@@ -21,6 +21,13 @@ class UsuarioRepository extends ServiceEntityRepository
         parent::__construct($registry, Usuario::class);
     }
 
+    public function pegarTodos()
+    {
+        return $this->createQueryBuilder('u')
+            ->getQuery()
+            ->getArrayResult();
+    }
+
     public function add(Usuario $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
